@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 // Create a context for session
 const SessionContext = createContext();
 
-// Create a provider component
+// Create a provider components
 export function SessionProvider({ children }) {
     
     const [session, setSession] = useState({
