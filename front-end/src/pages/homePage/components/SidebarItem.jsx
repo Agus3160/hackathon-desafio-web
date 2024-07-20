@@ -6,7 +6,7 @@ import '../styles/index.css';
 function HoveredSubMenuItem({ icon, text, active }) {
   return (
     <div
-      className={`my-2 rounded-md p-2 ${
+      className={`my-2 rounded-md p-2 z-4000 ${
         active ? 'bg-gray-300' : ' hover:bg-indigo-50'
       }`}
     >
