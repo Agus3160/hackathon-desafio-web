@@ -1,14 +1,12 @@
 
 import customAxios from "../../axios/customAxios"
 
-//username, email, password
-
 export default async function login(
   email,
   password
 ){
 
-  const response = await customAxios.post('/api/user', {
+  const response = await customAxios.post('/api/user/login', {
     email,
     password
   })
