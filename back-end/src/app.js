@@ -11,7 +11,7 @@ require('dotenv').config()
 //middleware
 app.use(express.json());
 var corsOptions = {
-    origin: '',
+    origin: '*',
     optionsSuccessStatus: 200
   }
   
