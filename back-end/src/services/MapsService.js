@@ -21,8 +21,11 @@ class MapsService {
         return response.data;
     }
     static async searchPlacesByCategory(categoryName) {
+
+        const GOOLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY
+
         const category = await CategoryModel.findOne({ name: categoryName });
-        
+
         if (!category) {
             throw new Error('Categoría no encontrada');
         }
@@ -30,7 +33,7 @@ class MapsService {
         const response = await axios.post(
             'https://places.googleapis.com/v1/places:searchText',
             {
-                textQuery: `${category.name}, Encarnacion, Paraguay` ,
+                textQuery: `${category.name}, Encarnacion, Paraguay`,
             },
             {
                 headers: {
@@ -57,10 +60,23 @@ class MapsService {
             }
         );
 
-        const places = response.data.places;
-        
+        const places = response.data;
 
-        return response.data;
+        // const processedPlaces = await Promise.all(places.map(async (place) => {
+        //     const photoUrl = place.photos && place.photos[0] 
+        //         ? `https://places.googleapis.com/v1/${place.photos[0]}/media?key=${GOOLE_API_KEY}` 
+        //         : null;
+
+        //     const photo = photoUrl ? await fetch(photoUrl).then(res => res.blob().then(blob => URL.createObjectURL(blob))) : null;
+
+        //     return {
+        //         ...place,
+        //         photo
+        //     };
+        // }));
+
+        return places;
+
     }
 
 }
