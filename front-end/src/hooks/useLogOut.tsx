@@ -17,6 +17,6 @@ export default function useLogOut() {
     navigator('/login', {replace: true})
   }
 
-  return { logOut }
+  return { logOut }
 
 }
