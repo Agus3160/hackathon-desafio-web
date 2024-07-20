@@ -13,6 +13,36 @@ import { useState } from 'react';
 import SidebarItem from './components/SidebarItem';
 import LandingPage from './components/mainPage';
 
+const navBarItems = [
+    {
+      icon: <Home />,
+      text: 'Home',
+      active: true,
+    },    
+    {
+      icon: <SmilePlus />,
+      subMenu: [
+        {
+          icon: <Coffee />,
+          text: 'Cafeterías',
+        },
+        {
+          icon: <Hotel />,
+          text: 'Hoteles',
+        },
+        {
+          icon: <Utensils />,
+          text: 'Restaurantes',
+        },
+        {
+          icon: <TreePine />,
+          text: 'Plazas',
+        },
+      ],
+      text: 'Todo',
+    },
+  ];
+
 // Este componente de barra lateral es para móvil y escritorio
 function Sidebar({ children }) {
   return (
@@ -57,36 +87,8 @@ function HomePageContent() {
   );
 }
 
-export default function MakeSidebar() {
-  const navBarItems = [
-    {
-      icon: <Home />,
-      text: 'Home',
-      active: true,
-    },    
-    {
-      icon: <SmilePlus />,
-      subMenu: [
-        {
-          icon: <Coffee />,
-          text: 'Cafeterías',
-        },
-        {
-          icon: <Hotel />,
-          text: 'Hoteles',
-        },
-        {
-          icon: <Utensils />,
-          text: 'Restaurantes',
-        },
-        {
-          icon: <TreePine />,
-          text: 'Plazas',
-        },
-      ],
-      text: 'Todo',
-    },
-  ];
+export default function MakeHomePage() {
+  
 
   return (
     <div className="flex">
