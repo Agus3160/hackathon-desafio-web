@@ -47,7 +47,7 @@ function LoginPage() {
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Crear Cuenta</h2>
                     </div>
                     <form
-                        onSubmit={handleSubmit}
+                        onSubmit={handleSubmit} 
                         className="mt-8 space-y-6"
                     >
                         <input type="hidden" name="remember" defaultValue="true" />

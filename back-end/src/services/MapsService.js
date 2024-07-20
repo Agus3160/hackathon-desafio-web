@@ -41,6 +41,9 @@ class MapsService {
             }
         );
 
+        const places = response.data.places;
+        
+
         return response.data;
     }
 }
