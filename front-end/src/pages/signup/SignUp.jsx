@@ -17,8 +17,8 @@ function SignUp() {
     })
 
     const handleSubmit = async (e) => {
-        setState({ ...state, loading: true })
         e.preventDefault()
+        setState({ ...state, loading: true })
         try{
           const res = await register(formData.username, formData.email, formData.password)
         }catch(error){
