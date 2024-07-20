@@ -1,10 +1,13 @@
 import {
-  ArrowRight,
-  ArrowLeft,
   Home,
-  Settings,
-  User,
+  Coffee,
+  Hotel,
+  Utensils,
+  TreePine,
+  ArrowRight, 
+  ArrowLeft,
   MoreVertical,
+  SmilePlus
 } from 'lucide-react';
 import { useState } from 'react';
 import SidebarItem from './components/SidebarItem';
@@ -59,8 +62,8 @@ function Sidebar({ children, expanded, setExpanded }) {
           `}
             >
               <div className="leading-4">
-                <h4 className="font-semibold">Mark Ruffalo</h4>
-                <span className="text-xs text-gray-600">mark@gmail.com</span>
+                <h4 className="font-semibold">Carlos Lugo</h4>
+                <span className="text-xs text-gray-600">lugo@gmail.com</span>
               </div>
               <MoreVertical className="h-6 w-6" />
             </div>
@@ -78,24 +81,28 @@ export default function MakeSidebar() {
       icon: <Home />,
       text: 'Home',
       active: true,
-    },
+    },    
     {
-      icon: <User />,
+      icon: <SmilePlus />,
       subMenu: [
         {
-          icon: <User />,
-          text: 'Profile',
+          icon: <Coffee />,
+          text: 'Cafeterías',
         },
         {
-          icon: <Settings />,
-          text: 'Settings',
+          icon: <Hotel />,
+          text: 'Hoteles',
+        },
+        {
+          icon: <Utensils />,
+          text: 'Restaurantes',
+        },
+        {
+          icon: <TreePine />,
+          text: 'Plazas',
         },
       ],
-      text: 'Profile',
-    },
-    {
-      icon: <Settings />,
-      text: 'Settings',
+      text: 'Todo',
     },
   ];
 
