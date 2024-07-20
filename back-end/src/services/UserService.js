@@ -1,6 +1,6 @@
 const UserModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 class UserService {
 
     static async createUser(user) {
@@ -31,6 +31,26 @@ class UserService {
 
     static async getUsers() {
         return UserModel.find({}).select('-password');
+    }
+    // Nueva función para autenticar usuario
+     static async authenticateUser(email, password) {
+        const user = await UserModel.findOne({ email });
+
+        if (!user) {
+            return { success: false, message: 'Usuario no encontrado' };
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return { success: false, message: 'Contraseña incorrecta' };
+        }
+        const token = jwt.sign(
+            { userId: user._id, email: user.email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        return { success: true, message: 'Autenticación exitosa', token };
     }
 }
 
