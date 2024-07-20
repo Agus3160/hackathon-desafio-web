@@ -1,9 +1,9 @@
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { LoaderCircle } from 'lucide-react'
 import register from '../../lib/auth/register'
 
-function LoginPage() {
+function SignUp() {
 
     const [formData, setFormData] = React.useState({
         username:'',
@@ -106,4 +106,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignUp;
