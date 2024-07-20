@@ -9,7 +9,7 @@ export default async function register(
   password
 ){
 
-  const response = await customAxios.post('/api/user', {
+  const response = await customAxios.post('/api/user/', {
     username,
     email,
     password
