@@ -31,7 +31,9 @@ const CategoryView = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Lugares en {categoryName}</h1>
+  <h1 className="text-4xl font-extrabold mb-6 text-center text-indigo-600 shadow-lg">
+    Lugares en <span>{categoryName}</span>
+  </h1>
             {loading ? (
                 <LoaderCircle size={64} className="mx-auto animate-spin mt-32   " />
             ) : error ? (
@@ -44,7 +46,7 @@ const CategoryView = () => {
                             imgSrc={place.photos ? `https::${place.photos[0].authorAttributions.photoUri}` : 'default-image.jpg'}
                             title={place.displayName.text}
                             description={place.formattedAddress}
-                            href={`https://www.google.com/maps/place/?q=place_id:${place.place_id}`}
+                            href={`/place/${place.id}`}
                         />
                     ))}
                 </div>

@@ -21,9 +21,7 @@ class MapsService {
         return response.data;
     }
     static async searchPlacesByCategory(categoryName) {
-
-        const GOOLE_API_KEY = process.env.GOOGLE_MAPS_API_KEY
-
+        console.log(categoryName)
         const category = await CategoryModel.findOne({ name: categoryName });
 
         if (!category) {

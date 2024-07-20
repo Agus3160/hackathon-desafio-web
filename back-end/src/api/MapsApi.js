@@ -21,6 +21,7 @@ router.post('/search-places-by-category', async (request, response) => {
     try {
         const categoryName = request.body.categoryName;
         const places = await mapsService.searchPlacesByCategory(categoryName);
+        console.log(places);
         response.status(200).json(places)
     } catch (error) {
         console.log(error.message);
