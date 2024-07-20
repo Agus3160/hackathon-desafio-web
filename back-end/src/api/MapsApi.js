@@ -17,6 +17,18 @@ router.post('/search-places', async (request, response) => {
     }
 });
 
+router.post('/search-plaace/:id', async (request, response) => {
+    const { id } = request.params;
+
+    try {
+        const place = await mapsService.getPlaceDetails(id);
+        response.status(200).json(place);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).json({message: 'Error al realizar la solicitud a la API de Google Maps'});
+    }
+})
+
 router.post('/search-places-by-category', async (request, response) => {
     try {
         const categoryName = request.body.categoryName;
