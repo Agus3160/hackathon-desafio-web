@@ -35,20 +35,6 @@ const LandingPage = () => {
             <p className="mt-4 max-w-3xl mx-auto text-lg sm:text-xl">
               La perla del sur, a orillas del río Paraná...
             </p>
-            <div className="mt-8 flex justify-center space-x-4">
-              <a
-                href="#"
-                className="px-8 py-3 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
-              >
-                Explorar
-              </a>
-              <a
-                href="#"
-                className="px-8 py-3 text-base font-medium text-blue-600 bg-white border border-transparent rounded-md hover:bg-gray-50"
-              >
-                Contactos
-              </a>
-            </div>
           </div>
         </div>
       </header>
@@ -74,19 +60,25 @@ const LandingPage = () => {
       {/* Features Section */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {[...Array(6)].map((_, index) => (
-              <div key={index} className="text-center">
-                <div className="flex items-center justify-center mb-4">
-                  <SmilePlus className="w-12 h-12 text-blue-600" /> {/* Replace with actual icon */}
-                </div>
-                <h3 className="text-lg font-medium">Robust Workflow</h3>
-                <p className="mt-2 text-gray-600">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
-              </div>
-            ))}
-          </div>
+          <b>¡Bienvenidos a Encarnación, la Perla del Sur del Paraguay!</b><br /><br />
+
+          Encarnación, una ciudad vibrante situada a orillas del majestuoso río Paraná, es un destino turístico imperdible en el sur de Paraguay. Conocida como la Perla del Sur, Encarnación combina historia, cultura, naturaleza y entretenimiento, ofreciendo una experiencia única a cada visitante. <br /><br />
+
+          <b>Historia y Cultura</b>
+          Encarnación es una ciudad con una rica historia que se remonta a su fundación en 1615 por el jesuita San Roque González de Santa Cruz. La influencia jesuítica es palpable en los alrededores, especialmente en las reducciones de Jesús de Tavarangüé y Santísima Trinidad del Paraná, sitios declarados Patrimonio de la Humanidad por la UNESCO. Estos monumentos históricos ofrecen un fascinante vistazo al pasado, con ruinas que cuentan historias de evangelización y convivencia pacífica entre los jesuitas y los pueblos indígenas guaraníes.
+          <br /><br />
+          <b>Naturaleza y Paisajes</b>
+          La ciudad se enorgullece de sus paisajes naturales, desde las playas de arena blanca de la Costanera de Encarnación hasta los frondosos bosques que rodean la región. La Costanera, con su extensa franja de playas, es perfecta para relajarse, practicar deportes acuáticos o simplemente disfrutar de un atardecer espectacular sobre el río Paraná. Además, los parques y plazas de la ciudad, como el Parque de la Ciudad y la Plaza de Armas, ofrecen espacios verdes ideales para paseos tranquilos y actividades al aire libre.
+          <br /><br />
+          <b>Eventos y Entretenimiento</b>
+          Encarnación es famosa por su vibrante vida nocturna y su calendario de eventos. El Carnaval de Encarnación, considerado uno de los mejores de la región, es un espectáculo de colores, música y danza que atrae a miles de turistas cada año. Durante esta fiesta, las calles se llenan de desfiles, carrozas y comparsas que celebran con alegría y entusiasmo. Además, la ciudad cuenta con una variada oferta gastronómica, desde restaurantes que sirven deliciosa comida paraguaya tradicional hasta opciones internacionales.
+          <br /><br />
+          <b>Actividades al Aire Libre</b>
+          Para los amantes de la aventura y el deporte, Encarnación ofrece numerosas actividades al aire libre. El río Paraná es ideal para practicar kayak, pesca y paseos en bote. Los ciclistas y corredores pueden disfrutar de los numerosos senderos y rutas a lo largo de la Costanera, mientras que los observadores de aves encontrarán un paraíso en los alrededores de la ciudad, donde una gran variedad de especies puede ser avistada.
+          <br /><br />
+          <b>Hospitalidad y Alojamiento</b>
+          Encarnación se destaca por la calidez y hospitalidad de su gente. La ciudad ofrece una amplia gama de opciones de alojamiento que van desde hoteles de lujo hasta acogedoras posadas y albergues. Sea cual sea su preferencia, encontrará un lugar confortable y acogedor para descansar después de un día lleno de exploraciones y aventuras.
+                    
         </div>
       </section>
 
