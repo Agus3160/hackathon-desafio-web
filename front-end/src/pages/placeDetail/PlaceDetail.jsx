@@ -5,6 +5,7 @@ import customAxios from '../../axios/customAxios'
 import { LoaderCircle } from 'lucide-react'
 import { Map } from 'lucide-react'
 import { useSession } from '../../context/SessionContext'
+import { Star } from 'lucide-react'
 
 export default function PlaceDetail() {
 
@@ -21,6 +22,16 @@ export default function PlaceDetail() {
     placeId: id
   })
   const [submitting, setSubmitting] = useState(false)
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+
+  const handleMouseEnter = (index) => {
+    setHoverRating(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverRating(0);
+  };
 
   if (!id) return <h2>Ingrese el ID de un lugar para conocer sus detalles</h2>
 
@@ -73,31 +84,42 @@ export default function PlaceDetail() {
             <div className=''>
               <h1 className='text-3xl text-bold'>{place.displayName.text}</h1>
               <p>{place.formattedAddress}</p>
-              
+
             </div>
-            <a 
+            <a
               href={place.googleMapsUri}
               target='_blank'
             >
               <Map size={52} />
             </a>
-            
+
           </div>
       }
 
       <div className='mt-6'>
         <h2 className='text-2xl font-bold'>Comentarios</h2>
-
+        <div className='flex'>
+          {[1, 2, 3, 4, 5].map((index) => (
+            <Star
+              key={index}
+              onClick={() => setRating(index)}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+              color={(hoverRating || rating) >= index ? 'gold' : 'grey'}
+              className='cursor-pointer'
+            />
+          ))}
+        </div>
         <form onSubmit={handleCommentSubmit} className='mt-4'>
           <textarea
             className='w-full p-2 border rounded'
             placeholder='Escribe tu comentario aquí...'
             value={newComment.body}
-            onChange={(e) => setNewComment({...newComment, body: e.target.value})}
+            onChange={(e) => setNewComment({ ...newComment, body: e.target.value })}
             required
           ></textarea>
-          <button 
-            type='submit' 
+          <button
+            type='submit'
             className='mt-2 p-2 bg-blue-500 text-white rounded'
             disabled={submitting}
           >
