@@ -2,19 +2,15 @@ import React, { useEffect, useState } from "react";
 import { SmilePlus } from 'lucide-react';
 import CategoryBox from '../../../components/CategoryBox';
 
-
-
-
-
 const LandingPage = () => {
 
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
     async function getCategorias() {
-      const response = await fetch('http://localhost:3001/api/category/list');
+      const response = await fetch('http://localhost:3000/api/category/list');
       const data = await response.json();
-      setCategorias(data);
+      setCategorias(data.categories);
     }
     getCategorias();
   }, []);
