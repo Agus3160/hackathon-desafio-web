@@ -40,12 +40,29 @@ class MapsService {
                 },
             }
         );
+        
+        
+        return response.data;
+    }
+
+    static async getPlaceDetails(placeId) {
+        const response = await axios.get(
+            `https://places.googleapis.com/v1/places/${placeId}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Goog-Api-Key': 'AIzaSyAt3oTHy0DfMpfp4aED_V5_Lj9SQKerUbE',
+                    'X-Goog-FieldMask': 'displayName,formattedAddress,googleMapsUri,photos',
+                },
+            }
+        );
 
         const places = response.data.places;
         
 
         return response.data;
     }
+
 }
 
 module.exports = MapsService;
