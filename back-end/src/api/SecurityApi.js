@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const securityService = require('../services/SecurityService');
+const jwtUtils = require('../utils/JwtUtil');
 
 router.post('/login',  async (request, response) => {
 
@@ -27,6 +28,13 @@ router.post('/login',  async (request, response) => {
 router.post('/refresh-token',  async (request, response) => {
 
     try {
+
+        const { refreshToken } = request.body;
+
+        const { success, data } = jwtUtils.verifyRefreshToken(refreshToken);
+
+        if(!success) return response.status(401).json({message: data});
+
         const result = await securityService.refreshToken(request.body.refreshToken);
 
         if (!result.success) {
@@ -35,7 +43,8 @@ router.post('/refresh-token',  async (request, response) => {
 
         return response.status(200).json({
             message: result.message,
-            accessToken: result.accessToken
+            accessToken: result.accessToken,
+            username:data.username
         });
 
     }catch (error) {
