@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { SmilePlus } from 'lucide-react'; 
+import { SmilePlus } from 'lucide-react';
 import CategoryBox from '../../../components/CategoryBox';
 
-const [categorias, setCategorias] = useState([]);
 
-useEffect(() => {
-  async function getCategorias() {
-    const response = await fetch('http://localhost:3001/api/category/list');
-    const data = await response.json();
-    setCategorias(data);
-  }
-  getCategorias();
-}, []);
+
+
 
 const LandingPage = () => {
+
+  const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    async function getCategorias() {
+      const response = await fetch('http://localhost:3001/api/category/list');
+      const data = await response.json();
+      setCategorias(data);
+    }
+    getCategorias();
+  }, []);
+
   return (
     <div>
       {/* Header Section */}
@@ -57,11 +62,12 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-around gap-6">
             {
-              categorias.map((category) => (
+              categorias?.map((category, index) => (
                 <CategoryBox
-                  imageSrc= {category.imageUrl}
-                  text={category.name}
-                  onClick={() => alert(category.name)}
+                  key={index} // Es una buena práctica incluir una clave única para cada elemento en una lista
+                  imageSrc={category?.imageUrl || 'default-image-url.jpg'} // Agrega una imagen por defecto en caso de que `imageUrl` sea nulo
+                  text={category?.name || 'Nombre no disponible'} // Proporciona un texto por defecto en caso de que `name` sea nulo
+                  onClick={() => alert(category?.name || 'Nombre no disponible')} // Asegúrate de que `name` esté definido
                 />
               ))
             }
@@ -99,7 +105,7 @@ const LandingPage = () => {
               <SmilePlus className="w-8 h-8" />
             </a>
             <a href="#" className="text-blue-500 hover:text-blue-600">
-              <SmilePlus  className="w-8 h-8" />
+              <SmilePlus className="w-8 h-8" />
             </a>
           </div>
           <div className="mt-8 text-center text-sm">
