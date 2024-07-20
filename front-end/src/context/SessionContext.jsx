@@ -5,6 +5,7 @@ const SessionContext = createContext();
 
 // Create a provider component
 export function SessionProvider({ children }) {
+    
     const [session, setSession] = useState({
         accessToken: null,
         refreshToken: null,

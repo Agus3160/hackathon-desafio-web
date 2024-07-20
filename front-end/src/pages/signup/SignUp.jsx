@@ -1,10 +1,11 @@
 import React from 'react';
+import register from '../../lib/auth/register';
 import { useNavigate } from 'react-router-dom';
 import { LoaderCircle } from 'lucide-react';
-import register from '../../lib/auth/register';
 
-function SignUp() {
-    const navigate = useNavigate(); // Hook para redirección
+function LoginPage() {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = React.useState({
         username: '',
@@ -15,25 +16,26 @@ function SignUp() {
     const [state, setState] = React.useState({
         loading: false,
         error: "",
+        message: "",
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setState({ ...state, loading: true });
-
         try {
             const res = await register(formData.username, formData.email, formData.password);
-            navigate('/'); 
+            setState({ loading: false, error: "", message: "" }); 
+            setState({ ...state, message: res.message });
+            navigate('/login');
         } catch (error) {
-            setState({ ...state, loading: false, error: error.response?.data?.message || 'Error desconocido' });
+            setState({ loading: false, error: error.response.data.message });
         }
-        setState({ ...state, loading: false });
     };
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -44,9 +46,10 @@ function SignUp() {
                     <div>
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Crear Cuenta</h2>
                     </div>
-                    <form 
+                    <form
                         onSubmit={handleSubmit}
-                        className="mt-8 space-y-6">
+                        className="mt-8 space-y-6"
+                    >
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="rounded-md shadow-sm flex-col flex gap-4 -space-y-px">
                             <div>
@@ -55,13 +58,12 @@ function SignUp() {
                                     id="username"
                                     name="username"
                                     type="text"
-                                    autoComplete="text"
+                                    autoComplete="username"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Usuario"
                                 />
                             </div>
-
                             <div>
                                 <input
                                     onChange={handleChange}
@@ -95,13 +97,13 @@ function SignUp() {
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 <div className='flex gap-2 items-center'>
-                                    <p>Registrar</p>
+                                    <p>Crear Cuenta</p>
                                     {state.loading && <LoaderCircle size={16} className="animate-spin" />}
                                 </div>
                             </button>
                         </div>
-
-                        {state.error !== "" && <div className="w-full text-center text-red-500">{state.error}</div>}
+                        {state.message && <div className="w-full text-center text-green-500">{state.message}</div>}
+                        {state.error && <div className="w-full text-center text-red-500">{state.error}</div>}
                     </form>
                 </div>
             </div>
@@ -109,4 +111,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default LoginPage;
