@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userService = require('../services/UserService');
+const SecurityService = require('../services/SecurityService');
 
 router.post('/', async (request, response) => {
 
@@ -33,7 +34,8 @@ router.get('/list', async (request, response) => {
 router.post('/login', async (request, response) => {
     try {
         const { email, password } = request.body;
-        const status = await userService.authenticateUser(email, password);
+
+        const status = await SecurityService.login({email, password});
 
         if (!status.success) {
             return response.status(400).json({ message: status.message });
