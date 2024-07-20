@@ -21,7 +21,7 @@ function Sidebar({ children, expanded, setExpanded }) {
         Solo es visible en pantallas móviles
       */}
       <div
-        className={`fixed inset-0 -z-10 block bg-gray-400  ${expanded ? 'block sm:hidden' : 'hidden'}`}
+        className={`fixed inset-0 -z-10 block bg-gray-400 ${expanded ? 'block sm:hidden' : 'hidden'}`}
       />
       <aside
         className={`box-border h-screen transition-all ${expanded ? 'w-5/6 sm:w-64' : 'w-0 sm:w-20'}`}
@@ -29,10 +29,8 @@ function Sidebar({ children, expanded, setExpanded }) {
         <nav className="flex h-full flex-col border-r bg-white shadow-sm">
           <div className="flex items-center justify-between p-4 pb-2">
             <img
-              src="https://img.logoipsum.com/243.svg"
-              className={`overflow-hidden transition-all ${
-                expanded ? 'w-32' : 'w-0'
-              }`}
+              src="https://masencarnacion.opentechla.com/themes/mas-encarnacion/assets/radio/img/logo_alt.png"
+              className={`overflow-hidden transition-all ${expanded ? 'w-32' : 'w-0'}`}
               alt=""
             />
             <div className={`${expanded ? '' : 'hidden sm:block'}`}>
@@ -56,10 +54,7 @@ function Sidebar({ children, expanded, setExpanded }) {
               className="h-10 w-10 rounded-md"
             />
             <div
-              className={`
-              flex items-center justify-between
-              overflow-hidden transition-all ${expanded ? 'ml-3 w-52' : 'w-0'}
-          `}
+              className={`flex items-center justify-between overflow-hidden transition-all ${expanded ? 'ml-3 w-52' : 'w-0'}`}
             >
               <div className="leading-4">
                 <h4 className="font-semibold">Carlos Lugo</h4>
@@ -70,6 +65,16 @@ function Sidebar({ children, expanded, setExpanded }) {
           </div>
         </nav>
       </aside>
+    </div>
+  );
+}
+
+function HomePageContent() {
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Bienvenido a la Página Principal</h1>
+      <p className="text-gray-700">Aquí puedes agregar el contenido principal de tu página.</p>
+      {/* Agrega más contenido y componentes según tus necesidades */}
     </div>
   );
 }
@@ -106,12 +111,16 @@ export default function MakeSidebar() {
     },
   ];
 
-  // Barra lateral de escritorio
   return (
-    <Sidebar expanded={expanded} setExpanded={setExpanded}>
-      {navBarItems.map((item, index) => (
-        <SidebarItem key={index} expanded={expanded} {...item} />
-      ))}
-    </Sidebar>
+    <div className="flex">
+      <Sidebar expanded={expanded} setExpanded={setExpanded}>
+        {navBarItems.map((item, index) => (
+          <SidebarItem key={index} expanded={expanded} {...item} />
+        ))}
+      </Sidebar>
+      <main className="flex-1">
+        <HomePageContent />
+      </main>
+    </div>
   );
 }

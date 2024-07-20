@@ -1,5 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import '../styles/index.css';
 
 // Este componente se usa para renderizar los elementos del submenú cuando se pasa el ratón por encima
 function HoveredSubMenuItem({ icon, text, active }) {
@@ -35,7 +36,7 @@ export default function SidebarItem({
 
   // Calcular la altura del submenú asumiendo que cada elemento tiene 40px de alto
   const subMenuHeight = expandSubMenu
-    ? `${((subMenu?.length || 0) * 40 + (subMenu && 15)).toString()}px`
+    ? `${((subMenu?.length || 0) * 40 + (subMenu ? 15 : 0)).toString()}px`
     : 0;
 
   return (
@@ -53,7 +54,7 @@ export default function SidebarItem({
          }
          ${!expanded && 'hidden sm:flex'}
      `}
-          onClick={() => setExpandSubMenu((curr) => expanded && !curr)}
+          onClick={() => subMenu ? setExpandSubMenu((curr) => expanded && !curr) : null}
         >
           <span className="h-6 w-6">{icon}</span>
 
@@ -66,7 +67,7 @@ export default function SidebarItem({
           </span>
           {subMenu && (
             <div
-              className={`absolute right-2 h-4 w-4${expanded ? '' : 'top-2'} transition-all ${expandSubMenu ? 'rotate-90' : 'rotate-0'}`}
+              className={`absolute right-2 h-4 w-4 ${expandSubMenu ? 'rotate-90' : 'rotate-0'} transition-all`}
             >
               <ChevronRight />
             </div>
