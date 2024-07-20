@@ -6,6 +6,7 @@ class CategoryService {
         if (!category.name) {
             return { success: false, message: 'El nombre de la categoría es requerido' };
         }
+        
         const categoryDB = await CategoryModel.findOne({ name: category.name });
 
         if (categoryDB) {
@@ -23,3 +24,4 @@ class CategoryService {
 }
 
 module.exports = CategoryService;
+
