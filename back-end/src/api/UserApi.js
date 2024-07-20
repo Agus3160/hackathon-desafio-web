@@ -29,4 +29,21 @@ router.get('/list', async (request, response) => {
     }
 });
 
+
+router.post('/login', async (request, response) => {
+    try {
+        const { email, password } = request.body;
+        const status = await userService.authenticateUser(email, password);
+
+        if (!status.success) {
+            return response.status(400).json({ message: status.message });
+        }
+        
+        return response.status(200).json({ message: status.message, token: status.token });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).json({ message: 'Error al intentar autenticar el usuario' });
+    }
+});
+
 module.exports = router;
