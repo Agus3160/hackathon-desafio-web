@@ -10,10 +10,12 @@ require('dotenv').config()
 
 //middleware
 app.use(express.json());
-app.use(cors({
-    origin: '*',
-    credentials:true
-}));
+var corsOptions = {
+    origin: '',
+    optionsSuccessStatus: 200
+  }
+  
+app.use(cors(corsOptions));
 
 //database connection
 mongoose.connect(process.env.MONGO_DB_URL)
