@@ -1,13 +1,13 @@
 import {
-  ArrowRightIcon,
-  ArrowLeftIcon,
-  HomeIcon,
-  CogIcon,
-  UserIcon,
-  EllipsisVerticalIcon,
-} from '@heroicons/react/24/outline';
+  ArrowRight,
+  ArrowLeft,
+  Home,
+  Settings,
+  User,
+  MoreVertical,
+} from 'lucide-react';
 import { useState } from 'react';
-import SidebarItem from './SidebarItem';
+import SidebarItem from './components/SidebarItem';
 
 // Este componente de barra lateral es para móvil y escritorio
 function Sidebar({ children, expanded, setExpanded }) {
@@ -38,9 +38,9 @@ function Sidebar({ children, expanded, setExpanded }) {
                 className="rounded-lg bg-gray-50 p-1.5 hover:bg-gray-100"
               >
                 {expanded ? (
-                  <ArrowRightIcon className="h-6 w-6" />
+                  <ArrowRight className="h-6 w-6" />
                 ) : (
-                  <ArrowLeftIcon className="h-6 w-6" />
+                  <ArrowLeft className="h-6 w-6" />
                 )}
               </button>
             </div>
@@ -62,7 +62,7 @@ function Sidebar({ children, expanded, setExpanded }) {
                 <h4 className="font-semibold">Mark Ruffalo</h4>
                 <span className="text-xs text-gray-600">mark@gmail.com</span>
               </div>
-              <EllipsisVerticalIcon className="h-6 w-6" />
+              <MoreVertical className="h-6 w-6" />
             </div>
           </div>
         </nav>
@@ -75,26 +75,26 @@ export default function MakeSidebar() {
   const [expanded, setExpanded] = useState(true);
   const navBarItems = [
     {
-      icon: <HomeIcon />,
+      icon: <Home />,
       text: 'Home',
       active: true,
     },
     {
-      icon: <UserIcon />,
+      icon: <User />,
       subMenu: [
         {
-          icon: <UserIcon />,
+          icon: <User />,
           text: 'Profile',
         },
         {
-          icon: <CogIcon />,
+          icon: <Settings />,
           text: 'Settings',
         },
       ],
       text: 'Profile',
     },
     {
-      icon: <CogIcon />,
+      icon: <Settings />,
       text: 'Settings',
     },
   ];

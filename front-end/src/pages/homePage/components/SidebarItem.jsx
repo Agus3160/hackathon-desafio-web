@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 // Este componente se usa para renderizar los elementos del submenú cuando se pasa el ratón por encima
@@ -68,7 +68,7 @@ export default function SidebarItem({
             <div
               className={`absolute right-2 h-4 w-4${expanded ? '' : 'top-2'} transition-all ${expandSubMenu ? 'rotate-90' : 'rotate-0'}`}
             >
-              <ChevronRightIcon />
+              <ChevronRight />
             </div>
           )}
 
