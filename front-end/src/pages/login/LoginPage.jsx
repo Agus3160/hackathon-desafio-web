@@ -1,4 +1,37 @@
+
+import React from 'react'
+import login from '../../lib/auth/login'
+
 function LoginPage() {
+
+    const [formData, setFormData] = React.useState({
+        email: '',
+        password: '',
+    })
+
+    const [state, setState] = React.useState({
+        loading: false,
+        error: "",
+    })
+
+    const handleSubmit = async (e) => {
+        setState({ ...state, loading: true })
+        e.preventDefault()
+        try{
+            await login(formData.email, formData.password)
+        }catch(error){
+            setState({ ...state, loading: false, error: error.message })
+        }
+
+    }
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
   return (
     <div>
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -8,7 +41,7 @@ function LoginPage() {
                 </div>
                 <form className="mt-8 space-y-6">
                     <input type="hidden" name="remember" defaultValue="true" />
-                    <div className="rounded-md shadow-sm -space-y-px">
+                    <div className="rounded-md shadow-sm flex-col flex gap-4 -space-y-px">
                         <div>
                             <input
                                 id="email"
@@ -16,7 +49,7 @@ function LoginPage() {
                                 type="text"
                                 autoComplete="email"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                 placeholder="Usuario"
                             />
                         </div>
@@ -27,7 +60,7 @@ function LoginPage() {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                 placeholder="Contraseña"
                             />
                         </div>
