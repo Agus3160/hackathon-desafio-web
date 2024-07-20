@@ -1,5 +1,5 @@
 import React from "react";
-import { SmilePlus } from 'lucide-react'; // Replace 'LucideIconName' with actual icon names you need
+import { SmilePlus } from 'lucide-react'; 
 
 const LandingPage = () => {
   return (
