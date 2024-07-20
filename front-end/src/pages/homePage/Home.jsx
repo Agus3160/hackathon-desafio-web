@@ -25,10 +25,12 @@ const navBarItems = [
         {
           icon: <Coffee />,
           text: 'Cafeterías',
+          path: '/category/cafeterias'
         },
         {
           icon: <Hotel />,
           text: 'Hoteles',
+          path: '/category/hoteles'
         },
         {
           icon: <Utensils />,
@@ -37,6 +39,7 @@ const navBarItems = [
         {
           icon: <TreePine />,
           text: 'Plazas',
+          path: '/category/plazas',
         },
       ],
       text: 'Todo',
