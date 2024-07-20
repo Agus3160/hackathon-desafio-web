@@ -28,6 +28,7 @@ export default function PlaceDetail() {
 
     const getPlaceByID = async () => {
       const response = await customAxios.get(`api/maps/place-details/${id}`)
+      console.log(response)
       setPlace(response.data)
       setLoading(false)
     }
@@ -72,6 +73,7 @@ export default function PlaceDetail() {
             <div className=''>
               <h1 className='text-3xl text-bold'>{place.displayName.text}</h1>
               <p>{place.formattedAddress}</p>
+              
             </div>
             <a 
               href={place.googleMapsUri}
@@ -79,6 +81,7 @@ export default function PlaceDetail() {
             >
               <Map size={52} />
             </a>
+            
           </div>
       }
 
