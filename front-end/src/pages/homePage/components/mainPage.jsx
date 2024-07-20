@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { SmilePlus } from 'lucide-react';
 import CategoryBox from '../../../components/CategoryBox';
-
+import { useNavigate } from 'react-router-dom';
 const LandingPage = () => {
 
   const [categorias, setCategorias] = useState([]);
-
+  const navigate = useNavigate(); 
   useEffect(() => {
     async function getCategorias() {
       const response = await fetch('http://localhost:3000/api/category/list');
@@ -14,6 +14,10 @@ const LandingPage = () => {
     }
     getCategorias();
   }, []);
+
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/category/${categoryName}`);
+  };
 
   return (
     <div>
@@ -49,7 +53,7 @@ const LandingPage = () => {
                   key={index} // Es una buena práctica incluir una clave única para cada elemento en una lista
                   imageSrc={category?.imageUrl || 'default-image-url.jpg'} // Agrega una imagen por defecto en caso de que `imageUrl` sea nulo
                   text={category?.name || 'Nombre no disponible'} // Proporciona un texto por defecto en caso de que `name` sea nulo
-                  onClick={() => alert(category?.name || 'Nombre no disponible')} // Asegúrate de que `name` esté definido
+                  onClick={() => handleCategoryClick(category.name)}  // Asegúrate de que `name` esté definido
                 />
               ))
             }
