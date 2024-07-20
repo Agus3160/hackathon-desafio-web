@@ -43,7 +43,7 @@ const CategoryView = () => {
                     {places.map((place) => (
                         <Card
                             key={place.id}
-                            imgSrc={place.photos ? `https::${place.photos[0].authorAttributions.photoUri}` : 'default-image.jpg'}
+                            imgSrc= "https://cdn-icons-png.flaticon.com/512/1483/1483285.png"
                             title={place.displayName.text}
                             description={place.formattedAddress}
                             href={`/place/${place.id}`}
