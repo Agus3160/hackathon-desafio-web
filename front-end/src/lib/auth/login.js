@@ -6,7 +6,7 @@ export default async function login(
   password
 ){
 
-  const response = await customAxios.post('/api/user/login', {
+  const response = await customAxios.post('/api/security/login', {
     email,
     password
   })

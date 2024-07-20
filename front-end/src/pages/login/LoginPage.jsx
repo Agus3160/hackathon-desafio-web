@@ -1,8 +1,15 @@
 import React from 'react';
 import login from '../../lib/auth/login';
+import { useNavigate } from 'react-router-dom';
 import { LoaderCircle } from 'lucide-react';
+import {useSession} from '../../context/SessionContext';
 
 function LoginPage() {
+
+    const {setSession} = useSession()
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = React.useState({
         email: '',
         password: '',
@@ -11,6 +18,7 @@ function LoginPage() {
     const [state, setState] = React.useState({
         loading: false,
         error: "",
+        message: "",
     });
 
     const handleSubmit = async (e) => {
@@ -18,9 +26,16 @@ function LoginPage() {
         setState({ ...state, loading: true });
         try {
             const res = await login(formData.email, formData.password);
-            setState({ loading: false, error: "" }); // Reset error on success
+            setState({ loading: false, error: "", message: "" }); 
+            setState({ ...state, message: res.message });
+            
             localStorage.setItem('accessToken', res.accessToken);
             localStorage.setItem('refreshToken', res.refreshToken);
+            localStorage.setItem('user', res.user.username);
+
+            setSession({accessToken: res.accessToken, refreshToken: res.refreshToken, user: res.user.username});
+
+            navigate('/');
         } catch (error) {
             setState({ loading: false, error: error.response.data.message });
         }
@@ -41,7 +56,7 @@ function LoginPage() {
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Iniciar sesión</h2>
                     </div>
                     <form
-                        onSubmit={handleSubmit} // No need for async here
+                        onSubmit={handleSubmit} 
                         className="mt-8 space-y-6"
                     >
                         <input type="hidden" name="remember" defaultValue="true" />
@@ -84,7 +99,7 @@ function LoginPage() {
                                 </div>
                             </button>
                         </div>
-
+                        {state.message && <div className="w-full text-center text-green-500">{state.message}</div>}
                         {state.error && <div className="w-full text-center text-red-500">{state.error}</div>}
                     </form>
                 </div>
