@@ -22,4 +22,4 @@ const CategoryBox = ({ imageSrc, text, onClick }) => {
   );
 };
 
-export default TourButton;
+export default CategoryBox;

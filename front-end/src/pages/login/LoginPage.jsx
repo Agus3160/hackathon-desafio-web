@@ -3,6 +3,7 @@ import login from '../../lib/auth/login';
 import { useNavigate } from 'react-router-dom';
 import { LoaderCircle } from 'lucide-react';
 import {useSession} from '../../context/SessionContext';
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
 
@@ -70,7 +71,7 @@ function LoginPage() {
                                     autoComplete="email"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Usuario"
+                                    placeholder="example@email.com"
                                 />
                             </div>
                             <div>
@@ -102,7 +103,10 @@ function LoginPage() {
                         {state.message && <div className="w-full text-center text-green-500">{state.message}</div>}
                         {state.error && <div className="w-full text-center text-red-500">{state.error}</div>}
                     </form>
-                </div>
+                    <div className='text-center'>
+                        <Link to="/register" className='text-blue-600'>No tienes cuenta? Crear Cuenta</Link>
+                    </div>                    
+                </div>                
             </div>
         </div>
     );

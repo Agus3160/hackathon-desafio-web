@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SmilePlus } from 'lucide-react'; 
 import CategoryBox from '../../../components/CategoryBox';
+
+const [categorias, setCategorias] = useState([]);
+
+useEffect(() => {
+  async function getCategorias() {
+    const response = await fetch('http://localhost:3001/api/category/list');
+    const data = await response.json();
+    setCategorias(data);
+  }
+  getCategorias();
+}, []);
 
 const LandingPage = () => {
   return (
@@ -45,36 +56,15 @@ const LandingPage = () => {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-around gap-6">
-            <CategoryBox
-              imageSrc="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-              text="Lugar Turístico 1"
-              onClick={() => alert('Lugar Turístico 1')}
-            />
-            <CategoryBox
-              imageSrc="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-              text="Lugar Turístico 2"
-              onClick={() => alert('Lugar Turístico 2')}
-            />
-            <CategoryBox
-              imageSrc="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-              text="Lugar Turístico 3"
-              onClick={() => alert('Lugar Turístico 3')}
-            />
-            <CategoryBox
-              imageSrc="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-              text="Lugar Turístico 4"
-              onClick={() => alert('Lugar Turístico 4')}
-            />
-            <CategoryBox
-              imageSrc="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-              text="Lugar Turístico 5"
-              onClick={() => alert('Lugar Turístico 5')}
-            />
-            <CategoryBox
-              imageSrc="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-              text="Lugar Turístico 6"
-              onClick={() => alert('Lugar Turístico 6')}
-            />
+            {
+              categorias.map((category) => (
+                <CategoryBox
+                  imageSrc= {category.imageUrl}
+                  text={category.name}
+                  onClick={() => alert(category.name)}
+                />
+              ))
+            }
           </div>
         </div>
       </section>
