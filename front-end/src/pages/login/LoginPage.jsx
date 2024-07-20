@@ -1,6 +1,7 @@
 
 import React from 'react'
 import login from '../../lib/auth/login'
+import { LoaderCircle } from 'lucide-react'
 
 function LoginPage() {
 
@@ -22,7 +23,7 @@ function LoginPage() {
         }catch(error){
             setState({ ...state, loading: false, error: error.message })
         }
-
+        setState({ ...state, loading: false })
     }
 
     const handleChange = (e) => {
@@ -39,11 +40,14 @@ function LoginPage() {
                 <div>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Iniciar sesión</h2>
                 </div>
-                <form className="mt-8 space-y-6">
+                <form 
+                    onSubmit={async (e) => await handleSubmit(e)}
+                    className="mt-8 space-y-6">
                     <input type="hidden" name="remember" defaultValue="true" />
                     <div className="rounded-md shadow-sm flex-col flex gap-4 -space-y-px">
                         <div>
                             <input
+                                onChange={handleChange}
                                 id="email"
                                 name="email"
                                 type="text"
@@ -55,6 +59,7 @@ function LoginPage() {
                         </div>
                         <div>
                             <input
+                                onChange={handleChange}
                                 id="password"
                                 name="password"
                                 type="password"
@@ -69,11 +74,17 @@ function LoginPage() {
                     <div className="flex items-center justify-center">
                         <button
                             type="submit"
+                            disabled={state.loading}
                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            Iniciar sesión
+                            <div className='flex gap-2 items-center'>
+                            <p>Iniciar sesión</p>
+                            {state.loading && <LoaderCircle className="animate-spin"/>}
+                            </div>
                         </button>
                     </div>
+
+                    {state.error === "" && <div className="text-red-500">{state.error}</div>}
                 </form>
             </div>
         </div>
