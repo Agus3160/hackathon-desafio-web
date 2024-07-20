@@ -13,7 +13,7 @@ class MapsService {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Goog-Api-Key': process.env.GOOGLE_MAPS_API_KEY,
-                    'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.priceLevel,places.id',
+                    'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.priceLevel,places.id,places.photos',
                 },
             }
         );
@@ -36,7 +36,7 @@ class MapsService {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Goog-Api-Key': process.env.GOOGLE_MAPS_API_KEY,
-                    'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.priceLevel,places.id',
+                    'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.priceLevel,places.id,places.photos',
                 },
             }
         );
